@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button onclick="createUser();">Create User</button>
+    <button onclick="getUser();">Get User</button>
+    <button onclick="addExpense();">Add expense</button>
+    <button onclick="getExpenses();">Get expenses</button>
+    <button onclick="getAllExpenses();">Get All expenses</button>
+    <button onclick="getOverallExpense();">Get Overall expense</button>
+    <button onclick="getBalanceSheet();">Get Balance sheet</button>
+    <script>
+        const server = "http://127.0.0.1:8000/api"
+        function createUser(){
+            window.open('./register', '_self')
+            // fetch(server+"/create_user", {
+            //     mode:"cors",
+            //     headers: {"content-type": 'application/json'},
+            //     method: "POST",
+            //     body: JSON.stringify({email: "vh@gm.com", name: "vehdat", contact_number: "123"}),
+            // })
+        }
+
+        function getUser() {
+            fetch(server+"/get_user")
+            .then(data => data.json()).then(json => console.log(json))
+        }
+
+        function addExpense() {
+            window.open('./expense', '_self')
+            // fetch(server+"/add_expense", {
+            //     mode: 'cors',
+            //     headers: {"content-type": 'application/json'},
+            //     method: "POST",
+            //     body: JSON.stringify({details: "A Cake", expense: 500}),
+            // })
+        }
+        function getExpenses() {
+            console.log("Clicked expense")
+            fetch(server+"/get_expenses/vh@gm.com", {
+                mode: 'cors',
+            }).then(data => data.json())
+            .then(json => console.log(json))
+        }
+        function getAllExpenses() {
+            console.log("Clicked expense")
+            fetch(server+"/get_all_expenses", {
+                mode: 'cors',
+            }).then(data => data.json())
+            .then(json => console.log(json))
+        }
+        function getOverallExpense() {
+            console.log("Clicked expense")
+            fetch(server+"/get_overall_expense", {
+                mode: 'cors',
+            }).then(data => data.json())
+            .then(json => console.log(json))
+        }
+        function getBalanceSheet() {
+            console.log("Clicked expense")
+            fetch(server+"/get_balance_sheet", {
+                mode: 'cors',
+            }).then(data => data.blob())
+            .then(blob =>{
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "balance_sheet.pdf";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            })
+            // .then(json => console.log(json))
+        }
+    </script>
+</body>
+</html>
