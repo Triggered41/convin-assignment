@@ -22,7 +22,11 @@ Install all the packages using the command (You may use a virtual environment if
 7. get_overall_expense
 8. get_balance_sheet
 
-## About Projeect
+## About Project
+
+this project was created as an assignment for backend intern role at convin.ai using Django, it use fpdf to create pdf of balance sheet
+
+### Using the project 
 
 1. Register at least one user (each user must have unique email)
 2. Login as a user
