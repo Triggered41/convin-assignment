@@ -113,6 +113,12 @@ def get_balance_sheet(request: HttpRequest):
 def to_pdf(data: dict):
     final_str = ''
     grand_total = 0
+
+    for user in data:
+        expenses = data[user]
+        for exp in expenses:
+            grand_total += exp['expense']
+
     for user in data:
         expenses = data[user]
         total = 0
@@ -123,8 +129,9 @@ def to_pdf(data: dict):
             final_str += f"{exp['detail']:<15}{exp['expense']}\n"
             total += exp['expense']
         final_str += '______________________\n'
-        final_str += f'{'total ':<15}{total}\n'
-        grand_total += total
+        final_str += f'{'Exact Split ':<15}{total}\n'
+        final_str += f'{'Equal Split ':<15}{grand_total/len(data):.2f}\n'
+        final_str += f'{'Percent Split ':<15}{(total/grand_total)*100:.2f}%\n'
     final_str += f'\ntotal expense = {grand_total}'
     
     pdf = FPDF()
