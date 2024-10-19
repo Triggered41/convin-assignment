@@ -21,3 +21,12 @@ Install all the packages using the command (You may use a virtual environment if
 6. get_all_expenses
 7. get_overall_expense
 8. get_balance_sheet
+
+## About Projeect
+
+1. Register at least one user (each user must have unique email)
+2. Login as a user
+3. Add expenses
+4. Repeat above steps with some other user (optional)
+5. Check other features like "Get Balance Sheet"
+
