@@ -1,7 +1,7 @@
 # convin-assignment
 
 ## Setup
-Install all the packages using the command
+Install all the packages using the command (You may use a virtual environment if you want)
 
 1. `python -m pip install -r requirements.txt`
 2. `cd expenses_site`
